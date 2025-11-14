@@ -6,8 +6,28 @@ html {
 }
 
 body {
-  background-color: white;
+  min-height: 100vh;
+  /* Warm off-white background so non-hero sections don’t sit on stark pure white */
+  background-color: #f7f5f2;
   color: #4d3f35;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Make default links look clean (buttons still use Tailwind classes) */
+a {
+  text-decoration: none;
+}
+
+/* Nicer text selection to match the green brand */
+::selection {
+  background-color: rgba(34, 197, 94, 0.25); /* primary-500 with alpha */
+  color: #14532d; /* deep green */
+}
+
+/* Smooth out image display */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }

@@ -3,108 +3,133 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Scissors, TreeDeciduous, Leaf, Shield, Truck, Clock, ArrowRight, Sparkles } from 'lucide-react'
+import {
+  TreePine,
+  Scissors,
+  Shield,
+  Truck,
+  HeartHandshake,
+  Zap,
+  CheckCircle,
+  ArrowRight,
+  Home,
+  Building2,
+  Trees,
+  Phone,
+} from 'lucide-react'
 
 const services = [
   {
-    icon: TreeDeciduous,
+    icon: TreePine,
     title: 'Tree Removal',
-    description: 'Safe and efficient removal of unwanted or dangerous trees with minimal impact to your property.',
-    features: ['Crane assistance available', 'Stump grinding included', 'Full cleanup service'],
+    description:
+      'Safe and efficient removal of unwanted or hazardous trees using advanced equipment and techniques.',
+    features: ['Crane assistance', 'Stump grinding', 'Complete cleanup', 'Permit assistance'],
     price: 'From $800',
-    color: '#ef4444',
+    popular: true,
   },
   {
     icon: Scissors,
-    title: 'Precision Pruning',
-    description: 'Expert trimming and shaping to enhance tree health, safety, and aesthetic appeal.',
-    features: ['Crown thinning', 'Deadwood removal', 'Structural pruning'],
+    title: 'Tree Pruning & Lopping',
+    description:
+      'Expert trimming to enhance tree health, safety, and aesthetics while maintaining natural form.',
+    features: ['Crown thinning', 'Deadwooding', 'Height reduction', 'Structural pruning'],
     price: 'From $350',
-    color: '#22c55e',
-  },
-  {
-    icon: Leaf,
-    title: 'Tree Health Care',
-    description: 'Comprehensive assessment and treatment plans to ensure your trees thrive for generations.',
-    features: ['Disease diagnosis', 'Pest management', 'Soil analysis'],
-    price: 'From $200',
-    color: '#3b82f6',
   },
   {
     icon: Shield,
-    title: 'Emergency Response',
-    description: '24/7 emergency service for storm damage, fallen trees, and urgent safety hazards.',
-    features: ['Rapid response', 'Insurance assistance', 'Priority service'],
+    title: '24/7 Emergency Service',
+    description:
+      'Rapid response for storm damage, fallen trees, and urgent safety hazards any time.',
+    features: ['Storm damage', 'Dangerous trees', 'Insurance work', 'Priority response'],
     price: 'Call anytime',
-    color: '#a855f7',
+  },
+  {
+    icon: HeartHandshake,
+    title: 'Tree Health Assessment',
+    description:
+      'Professional evaluation and treatment plans to ensure your trees thrive for generations.',
+    features: ['Disease diagnosis', 'Pest management', 'Soil testing', 'Treatment plans'],
+    price: 'From $200',
   },
   {
     icon: Truck,
-    title: 'Waste Management',
-    description: 'Eco-friendly disposal and recycling of all green waste, mulch available upon request.',
-    features: ['Wood chipping', 'Mulch delivery', 'Complete removal'],
+    title: 'Stump Grinding',
+    description:
+      'Complete stump removal below ground level, perfect for replanting or landscaping.',
+    features: ['Below ground', 'Clean finish', 'Mulch provided', 'Multiple stumps'],
     price: 'From $150',
-    color: '#eab308',
   },
   {
-    icon: Clock,
+    icon: Trees,
     title: 'Land Clearing',
-    description: 'Professional vegetation management for development, fire prevention, and landscaping.',
-    features: ['Site preparation', 'Selective clearing', 'Erosion control'],
-    price: 'Quote on request',
-    color: '#6366f1',
+    description:
+      'Efficient vegetation management for development, fire prevention, and property enhancement.',
+    features: ['Site preparation', 'Selective clearing', 'Waste removal', 'Erosion control'],
+    price: 'Custom quote',
   },
+]
+
+const serviceTypes = [
+  { icon: Home, label: 'Residential', description: 'Homes & Gardens' },
+  { icon: Building2, label: 'Commercial', description: 'Business Properties' },
+  { icon: Shield, label: 'Council', description: 'Government Projects' },
 ]
 
 export function Services() {
   return (
-    <section id="services" style={{ 
-      padding: '80px 0',
-      background: 'linear-gradient(180deg, #ffffff 0%, #f0fdf4 50%, #dcfce7 100%)'
-    }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
+    <section id="services" className="py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          style={{ textAlign: 'center', marginBottom: '64px' }}
+          className="text-center mb-16"
         >
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
-            <Sparkles style={{ width: '20px', height: '20px', color: '#16a34a' }} />
-            <span style={{ 
-              fontSize: '14px', 
-              fontWeight: '700', 
-              color: '#16a34a',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase'
-            }}>
-              Our Expertise
-            </span>
-            <Sparkles style={{ width: '20px', height: '20px', color: '#16a34a' }} />
-          </div>
-          <h2 style={{ 
-            fontSize: '48px', 
-            fontWeight: '800', 
-            color: '#15803d',
-            marginBottom: '16px'
-          }}>
+          <span className="inline-block px-4 py-2 bg-green-100 text-green-700 font-semibold text-sm rounded-full mb-4">
+            OUR SERVICES
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Professional Tree Care Solutions
           </h2>
-          <p style={{ 
-            fontSize: '20px', 
-            color: '#166534',
-            maxWidth: '700px',
-            margin: '0 auto'
-          }}>
-            From routine maintenance to emergency response, we deliver excellence in every branch of tree care
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            From routine maintenance to emergency response, we provide comprehensive tree services
+            for Melbourne residential and commercial properties
           </p>
         </motion.div>
 
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-          gap: '32px'
-        }}>
+        {/* Service Types */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
+        >
+          {serviceTypes.map((type, index) => (
+            <motion.div
+              key={type.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
+            >
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-green-100 rounded-xl">
+                  <type.icon className="w-6 h-6 text-green-600" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-1">{type.label}</h3>
+                  <p className="text-sm text-gray-600">{type.description}</p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -112,131 +137,81 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.02, y: -5 }}
-              style={{
-                background: 'white',
-                borderRadius: '24px',
-                padding: '32px',
-                boxShadow: '0 10px 40px rgba(0, 0, 0, 0.08)',
-                border: '1px solid rgba(34, 197, 94, 0.1)',
-                position: 'relative',
-                overflow: 'hidden',
-                cursor: 'default',
-                transition: 'all 0.3s ease'
-              }}
+              className={`relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 ${
+                service.popular ? 'ring-2 ring-green-500' : ''
+              }`}
             >
-              {/* Top color bar */}
-              <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: '4px',
-                background: service.color
-              }} />
-              
-              {/* Icon */}
-              <div style={{
-                width: '64px',
-                height: '64px',
-                background: `linear-gradient(135deg, ${service.color}20, ${service.color}10)`,
-                borderRadius: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '24px'
-              }}>
-                <service.icon style={{ width: '32px', height: '32px', color: service.color }} />
+              {service.popular && (
+                <span className="absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-green-500 text-white text-xs font-bold rounded-full">
+                  MOST POPULAR
+                </span>
+              )}
+
+              <div className="mb-6">
+                <div className="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                  <service.icon className="w-7 h-7 text-green-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 mb-4">{service.description}</p>
+                <div className="text-2xl font-bold text-green-600 mb-6">
+                  {service.price}
+                </div>
               </div>
 
-              <h3 style={{ 
-                fontSize: '24px', 
-                fontWeight: '700', 
-                color: '#15803d',
-                marginBottom: '12px'
-              }}>
-                {service.title}
-              </h3>
-              
-              <p style={{ 
-                color: '#4b5563',
-                marginBottom: '16px',
-                lineHeight: '1.6'
-              }}>
-                {service.description}
-              </p>
-              
-              <div style={{ 
-                fontSize: '24px', 
-                fontWeight: '700', 
-                color: '#16a34a',
-                marginBottom: '16px'
-              }}>
-                {service.price}
-              </div>
-
-              <ul style={{ marginBottom: '24px' }}>
+              <ul className="space-y-3 mb-8">
                 {service.features.map((feature) => (
-                  <li key={feature} style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '8px',
-                    marginBottom: '8px',
-                    color: '#6b7280',
-                    fontSize: '14px'
-                  }}>
-                    <div style={{
-                      width: '20px',
-                      height: '20px',
-                      borderRadius: '50%',
-                      background: '#dcfce7',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}>
-                      <div style={{
-                        width: '8px',
-                        height: '8px',
-                        borderRadius: '50%',
-                        background: '#16a34a'
-                      }} />
-                    </div>
-                    {feature}
+                  <li key={feature} className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700 text-sm">{feature}</span>
                   </li>
                 ))}
               </ul>
 
-              <button style={{
-                width: '100%',
-                padding: '12px',
-                borderRadius: '12px',
-                border: '2px solid #16a34a',
-                background: 'white',
-                color: '#16a34a',
-                fontWeight: '600',
-                fontSize: '16px',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#16a34a'
-                e.currentTarget.style.color = 'white'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'white'
-                e.currentTarget.style.color = '#16a34a'
-              }}>
-                Learn More
-                <ArrowRight style={{ width: '16px', height: '16px' }} />
+              <button
+                onClick={() =>
+                  document
+                    .getElementById('consultation')
+                    ?.scrollIntoView({ behavior: 'smooth' })
+                }
+                className="w-full py-3 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-all flex items-center justify-center gap-2 group"
+              >
+                Get Quote
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </motion.div>
           ))}
         </div>
+
+        {/* Emergency Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 bg-gradient-to-r from-orange-600 to-red-600 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
+          <div className="relative z-10 max-w-3xl">
+            <div className="flex items-center gap-3 mb-4">
+              <Zap className="w-8 h-8" />
+              <span className="text-2xl font-bold">
+                Emergency Tree Service Available 24/7
+              </span>
+            </div>
+            <p className="text-lg mb-6 text-white/90">
+              Storm damage? Fallen tree? We&apos;re here to help immediately. Our emergency
+              response team is ready to handle any urgent tree situation.
+            </p>
+            <a
+              href="tel:0429187791"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-white text-red-600 font-bold rounded-full hover:bg-gray-100 transition-all"
+            >
+              <Phone className="w-5 h-5" />
+              Call Now: 0429 187 791
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
