@@ -3,138 +3,128 @@
 
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Plus, Minus } from 'lucide-react'
+import { Minus, Plus } from 'lucide-react'
 
 const faqs = [
   {
-    question: 'How much does tree removal cost?',
+    question: 'How much does tree removal or pruning cost?',
     answer:
-      'Tree removal costs vary based on tree size, location, and complexity. Small trees (up to 5m) typically cost $500-$1,500, medium trees (5-10m) range from $1,500-$3,000, and large trees (over 10m) can cost $3,000+. We provide free, detailed quotes after site assessment.',
+      'Pricing depends on the size of the tree, ease of access, proximity to structures and how much clean-up is required. Simple pruning can start from a few hundred dollars, while large removals are quoted on site. LMK Tree Services provides free written quotes so you know the full cost before any work begins.',
   },
   {
     question: 'Do I need council permission to remove a tree?',
     answer:
-      'In most Melbourne councils, you need a permit to remove trees over a certain size or protected species. We can assist with the permit application process and ensure compliance with local regulations. Emergency removals for dangerous trees may not require permits.',
+      'Some trees are protected by local council rules or overlays. Kyle can advise you during the quote if council approval is likely to be needed and, where required, help you understand what information council will ask for.',
   },
   {
-    question: 'How quickly can you respond to emergencies?',
+    question: 'Are you fully insured and qualified?',
     answer:
-      'We offer 24/7 emergency response and typically arrive within 2-4 hours for urgent situations like storm damage or fallen trees. Our emergency team is equipped to handle dangerous situations safely and efficiently.',
+      'Yes. LMK Tree Services is fully insured with public liability cover up to $20M and uses qualified, experienced arborists. Safety procedures, harness checks and the right equipment are used on every job to protect your home and neighbours.',
   },
   {
-    question: 'What happens to the wood and green waste?',
+    question: 'Will you take away all of the branches and mess?',
     answer:
-      'We practice eco-friendly disposal. Wood can be chipped for mulch (available to customers on request), larger timber can be cut for firewood, and all green waste is recycled through authorized facilities. We leave your property completely clean.',
+      'In most cases, yes – green waste is chipped or removed as part of the job and the area is blown down so your yard is left neat, not like a worksite. If you would like to keep mulch or firewood, just mention it when booking and we can plan for that.',
   },
   {
-    question: 'Are you fully insured?',
+    question: 'Which areas do you service and when can you attend?',
     answer:
-      'Yes, we carry $20 million public liability insurance and all our arborists are covered by WorkCover. We can provide certificates of insurance upon request. This protects both your property and our team during all work.',
-  },
-  {
-    question: 'How long does tree removal take?',
-    answer:
-      "Most residential tree removals are completed in one day. Small trees may take 2-4 hours, medium trees 4-6 hours, and large or complex removals may require 1-2 days. We'll provide a time estimate with your quote.",
+      'LMK Tree Services is based in Melbourne’s south-east and services surrounding suburbs and wider metro Melbourne by arrangement. Appointment times are flexible, and emergency call-outs are available for storm-damaged or dangerous trees.',
   },
 ]
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
+  const toggleIndex = (index: number) => {
+    setOpenIndex((current) => (current === index ? null : index))
+  }
+
   return (
-    <section id="faq" className="py-20 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="bg-white py-20">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
+          viewport={{ once: true, amount: 0.3 }}
+          className="mb-12 text-center"
         >
-          <span className="inline-block px-4 py-2 bg-green-100 text-green-700 font-semibold text-sm rounded-full mb-4">
-            FAQ
+          <span className="inline-block rounded-full bg-primary-50 px-4 py-2 text-xs font-semibold tracking-wide text-primary-700">
+            COMMON QUESTIONS
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Frequently Asked Questions
+          <h2 className="mt-4 text-3xl font-bold text-bark-900 sm:text-4xl">
+            FAQs about tree work and safety
           </h2>
-          <p className="text-xl text-gray-600">
-            Everything you need to know about our tree services
+          <p className="mt-3 text-sm text-bark-700 sm:text-base">
+            If you&apos;re unsure what can be done with your trees, hedges or stumps, these answers
+            cover the basics. For anything else, just ask when you request a quote.
           </p>
         </motion.div>
 
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-gray-50 rounded-2xl overflow-hidden"
-            >
-              <button
-                onClick={() =>
-                  setOpenIndex(openIndex === index ? null : index)
-                }
-                className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors"
+        <div className="space-y-3">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index
+
+            return (
+              <motion.div
+                key={faq.question}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.25, delay: index * 0.05 }}
+                className="overflow-hidden rounded-2xl border border-bark-100 bg-bark-50/60"
               >
-                <span className="text-lg font-semibold text-gray-900 pr-8">
-                  {faq.question}
-                </span>
-                <div className="flex-shrink-0 w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
-                  {openIndex === index ? (
-                    <Minus className="w-5 h-5 text-white" />
-                  ) : (
-                    <Plus className="w-5 h-5 text-white" />
-                  )}
-                </div>
-              </button>
-              <AnimatePresence>
-                {openIndex === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="px-8 pb-6">
-                      <p className="text-gray-600 leading-relaxed">
+                <button
+                  type="button"
+                  onClick={() => toggleIndex(index)}
+                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                  aria-expanded={isOpen}
+                >
+                  <span className="text-sm font-semibold text-bark-900 sm:text-base">
+                    {faq.question}
+                  </span>
+                  <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-white text-primary-700 shadow-sm">
+                    {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                  </span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="border-t border-bark-100 px-5 pb-4 pt-3 text-sm leading-relaxed text-bark-800">
                         {faq.answer}
-                      </p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            )
+          })}
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-12 text-center"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-10 rounded-2xl bg-bark-900 px-6 py-5 text-center text-sm text-bark-50 sm:text-base"
         >
-          <p className="text-gray-600 mb-4">
-            Still have questions? We&apos;re here to help!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="tel:0429187791"
-              className="px-6 py-3 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition-all"
-            >
-              Call Us: 0429 187 791
-            </a>
-            <button
-              onClick={() =>
-                document
-                  .getElementById('consultation')
-                  ?.scrollIntoView({ behavior: 'smooth' })
-              }
-              className="px-6 py-3 bg-gray-900 text-white font-semibold rounded-full hover:bg-gray-800 transition-all"
-            >
-              Get Free Quote
-            </button>
-          </div>
+          Still not sure what your tree needs?{' '}
+          <button
+            type="button"
+            onClick={() =>
+              document.getElementById('consultation')?.scrollIntoView({ behavior: 'smooth' })
+            }
+            className="font-semibold text-primary-200 underline-offset-4 hover:underline"
+          >
+            Request a free quote and friendly advice
+          </button>
+          .
         </motion.div>
       </div>
     </section>

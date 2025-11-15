@@ -1,158 +1,134 @@
-// components/footer.tsx
-import Logo from "@/components/logo";
-import { Github, Twitter, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+// components/Footer.tsx
+import Logo from '@/components/logo'
+import { Mail, MapPin, Phone } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-gradient-to-b from-slate-50 to-slate-100 border-t border-slate-200">
-      <div className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12">
+    <footer className="bg-gradient-to-b from-bark-100 via-bark-50 to-white">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-4">
           {/* Brand / intro */}
-          <div className="lg:col-span-2">
+          <div className="space-y-5 lg:col-span-2">
             <Logo />
-            <p className="mt-6 max-w-md text-base text-slate-600 leading-relaxed">
-              Building exceptional digital products that drive business growth.
-              From startups to enterprises, we bring ideas to life.
+
+            <p className="max-w-md text-sm leading-relaxed text-bark-700">
+              LMK Tree Services specialises in safe, professional tree removals,
+              pruning, hedge trimming and stump grinding. Local, fully insured
+              and committed to leaving every property clean, tidy and ready to enjoy.
             </p>
-            <div className="mt-8 flex gap-5">
-              <a
-                href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-200 text-slate-600 transition-all hover:bg-emerald-600 hover:text-white hover:scale-110"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-200 text-slate-600 transition-all hover:bg-emerald-600 hover:text-white hover:scale-110"
-                aria-label="GitHub"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-200 text-slate-600 transition-all hover:bg-emerald-600 hover:text-white hover:scale-110"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
+
+            <p className="text-sm text-bark-600">
+              Free, no-obligation quotes with honest advice on the best option for
+              your trees and property.
+            </p>
+
+            {/* Agency credit */}
+            <div className="pt-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-bark-500">
+                Website by
+              </p>
+              <div className="mt-2 inline-flex items-center gap-3 rounded-xl bg-white/80 px-3 py-2 shadow-sm">
+                <Image
+                  src="/BlankSlateDevToFillHeader.png"
+                  alt="Blank Slate Dev"
+                  width={711}
+                  height={374}
+                  className="h-10 w-auto object-contain"
+                  priority
+                />
+              </div>
             </div>
           </div>
 
-          {/* Company links */}
-          <div>
-            <h3 className="mb-6 text-sm font-bold uppercase tracking-wider text-slate-900">
-              Company
+          {/* Links */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-primary-700">
+              QUICK LINKS
             </h3>
-            <ul className="space-y-4">
-              <li>
-                <a
-                  href="#"
-                  className="text-base text-slate-600 hover:text-emerald-600 transition-colors"
-                >
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-base text-slate-600 hover:text-emerald-600 transition-colors"
-                >
-                  Our Work
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-base text-slate-600 hover:text-emerald-600 transition-colors"
-                >
-                  Process
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-base text-slate-600 hover:text-emerald-600 transition-colors"
-                >
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-base text-slate-600 hover:text-emerald-600 transition-colors"
-                >
-                  Blog
-                </a>
-              </li>
-            </ul>
+            <nav className="flex flex-col gap-2 text-sm">
+              <a href="#services" className="text-bark-700 hover:text-primary-700">
+                Services
+              </a>
+              <a href="#process" className="text-bark-700 hover:text-primary-700">
+                How we work
+              </a>
+              <a href="#about" className="text-bark-700 hover:text-primary-700">
+                About LMK
+              </a>
+              <a href="#gallery" className="text-bark-700 hover:text-primary-700">
+                Before &amp; after gallery
+              </a>
+              <a href="#faq" className="text-bark-700 hover:text-primary-700">
+                FAQs
+              </a>
+              <a href="#consultation" className="text-bark-700 hover:text-primary-700">
+                Request a free quote
+              </a>
+            </nav>
           </div>
 
-          {/* Contact details */}
-          <div>
-            <h3 className="mb-6 text-sm font-bold uppercase tracking-wider text-slate-900">
-              Get in Touch
+          {/* Contact */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-primary-700">
+              CONTACT &amp; SERVICE AREA
             </h3>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <Mail className="mt-0.5 h-5 w-5 text-emerald-600" />
+            <ul className="space-y-3 text-sm text-bark-800">
+              <li className="flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-100 text-primary-700">
+                  <Phone className="h-4 w-4" />
+                </div>
                 <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-bark-600">CALL KYLE</p>
                   <a
-                    href="mailto:hello@blankslatedev.com"
-                    className="text-base text-slate-600 hover:text-emerald-600 transition-colors"
+                    href="tel:0429187791"
+                    className="text-base font-semibold text-bark-900"
                   >
-                    hello@blankslatedev.com
+                    0429 187 791
                   </a>
                 </div>
               </li>
-              <li className="flex items-start gap-3">
-                <Phone className="mt-0.5 h-5 w-5 text-emerald-600" />
+
+              <li className="flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-100 text-primary-700">
+                  <Mail className="h-4 w-4" />
+                </div>
                 <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-bark-600">EMAIL</p>
                   <a
-                    href="tel:+1234567890"
-                    className="text-base text-slate-600 hover:text-emerald-600 transition-colors"
+                    href="mailto:kyle@lmktreeservices.com"
+                    className="text-sm font-medium text-bark-900"
                   >
-                    +1 (234) 567-890
+                    kyle@lmktreeservices.com
                   </a>
                 </div>
               </li>
+
               <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-5 w-5 text-emerald-600" />
-                <div className="text-base text-slate-600">
-                  San Francisco, CA
-                  <br />
-                  United States
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-100 text-primary-700">
+                  <MapPin className="h-4 w-4" />
+                </div>
+                <div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-bark-600">BASED IN</p>
+                  <p className="text-sm font-medium text-bark-900">
+                    Melbourne&apos;s south-east • Servicing metro &amp; surrounding suburbs
+                  </p>
                 </div>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-16 border-t border-slate-200 pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p className="text-sm text-slate-500">
-              © {currentYear} Blank Slate Dev. All rights reserved.
-            </p>
-            <div className="flex gap-8">
-              <a
-                href="#"
-                className="text-sm text-slate-500 hover:text-emerald-600 transition-colors"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="#"
-                className="text-sm text-slate-500 hover:text-emerald-600 transition-colors"
-              >
-                Terms of Service
-              </a>
-            </div>
-          </div>
+        {/* Bottom */}
+        <div className="mt-12 border-t border-bark-200 pt-6 text-xs text-bark-600 sm:flex sm:items-center sm:justify-between">
+          <p>&copy; {currentYear} LMK Tree Services. All rights reserved.</p>
+          <p className="mt-3 sm:mt-0">
+            Fully insured tree lopping &amp; arborist services • Free quotes available
+          </p>
         </div>
       </div>
     </footer>
-  );
+  )
 }
