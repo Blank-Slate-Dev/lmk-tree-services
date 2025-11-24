@@ -45,12 +45,6 @@ export default function Footer() {
               <a href="#about" className="text-bark-700 hover:text-primary-700">
                 About LMK
               </a>
-              <a href="#gallery" className="text-bark-700 hover:text-primary-700">
-                Before &amp; after gallery
-              </a>
-              <a href="#faq" className="text-bark-700 hover:text-primary-700">
-                FAQs
-              </a>
               <a href="#consultation" className="text-bark-700 hover:text-primary-700">
                 Request a free quote
               </a>
