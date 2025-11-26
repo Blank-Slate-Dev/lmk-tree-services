@@ -77,7 +77,10 @@ export function Hero() {
       const remaining = 5 - imageItems.length;
       if (remaining <= 0) {
         setErrors((e) => ({ ...e, images: 'Maximum 5 images allowed' }));
-        setTimeout(() => setErrors((e) => ({ ...e, images: undefined })), 3000);
+        setTimeout(
+          () => setErrors((e) => ({ ...e, images: undefined })),
+          3000
+        );
         return;
       }
 
@@ -95,7 +98,9 @@ export function Hero() {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: { 'image/*': ['.jpeg', '.jpg', '.png', '.webp', '.heic'] },
+    accept: {
+      'image/*': ['.jpeg', '.jpg', '.png', '.webp', '.heic'],
+    },
     maxSize: 10485760,
     multiple: true,
   });
@@ -192,16 +197,15 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen overflow-hidden">
-
-      {/* CLEAN background — mobile & desktop */}
+      {/* Background with mobile + desktop images (no overlays now) */}
       <motion.div
         className="
           absolute inset-0 
           bg-cover bg-center bg-no-repeat
           transition-all duration-500
 
-          bg-[url('/mobileherosectionbackground-dark.jpg')]   /* Mobile dark image */
-          md:bg-[url('/HeroSectionBackgroundNo2-dark.jpg')]   /* Desktop dark image */
+          bg-[url('/mobileherosectionbackground.jpg')]   /* Mobile */
+          md:bg-[url('/HeroSectionBackgroundNo2.jpg')]   /* Desktop */
         "
         style={enableParallax ? { y: backgroundY } : undefined}
       />
@@ -212,7 +216,6 @@ export function Hero() {
         style={enableParallax ? { y: contentY, opacity } : undefined}
       >
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
-          
           {/* LEFT TEXT */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -241,7 +244,6 @@ export function Hero() {
                 0429 187 791
               </a>
             </p>
-
             <p className="mb-8 text-white/70">
               Same-day service available across Melbourne’s south-east.
             </p>
@@ -271,7 +273,7 @@ export function Hero() {
             </a>
           </motion.div>
 
-          {/* FORM */}
+          {/* Right-side FORM */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -281,7 +283,7 @@ export function Hero() {
               <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-emerald-500/20 via-green-500/10 to-emerald-500/20 blur-2xl" />
 
               <div className="relative rounded-2xl border border-white/10 bg-white/95 p-6 shadow-2xl backdrop-blur-sm sm:p-8">
-
+                {/* Ribbon */}
                 <div className="mb-6 text-center">
                   <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700">
                     <span className="h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
@@ -305,11 +307,11 @@ export function Hero() {
                 {submitStatus === 'error' && (
                   <div className="mb-6 rounded-xl bg-red-50 p-4 ring-1 ring-red-100">
                     <p className="font-semibold text-red-900">Something went wrong</p>
-                    <p className="text-sm text-red-700">Please call 0429 187 791</p>
+                    <p className="text-sm text-red-700">Please call us at 0429 187 791</p>
                   </div>
                 )}
 
-                {/* FORM FIELDS */}
+                {/* FORM */}
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-2 gap-3">
                     <div>
@@ -321,6 +323,9 @@ export function Hero() {
                         placeholder="First Name *"
                         className="w-full rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-sm"
                       />
+                      {errors.firstName && (
+                        <p className="text-xs text-red-600">{errors.firstName}</p>
+                      )}
                     </div>
 
                     <input
@@ -343,6 +348,9 @@ export function Hero() {
                         placeholder="Phone *"
                         className="w-full rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-sm"
                       />
+                      {errors.phone && (
+                        <p className="text-xs text-red-600">{errors.phone}</p>
+                      )}
                     </div>
 
                     <div>
@@ -354,6 +362,9 @@ export function Hero() {
                         placeholder="Email *"
                         className="w-full rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-sm"
                       />
+                      {errors.email && (
+                        <p className="text-xs text-red-600">{errors.email}</p>
+                      )}
                     </div>
                   </div>
 
@@ -374,7 +385,11 @@ export function Hero() {
                     rows={3}
                     className="w-full rounded-xl border-2 border-gray-200 bg-gray-50 px-4 py-3 text-sm resize-none"
                   />
+                  {errors.message && (
+                    <p className="text-xs text-red-600">{errors.message}</p>
+                  )}
 
+                  {/* IMAGE UPLOAD */}
                   <div>
                     <div
                       {...getRootProps()}
@@ -389,6 +404,10 @@ export function Hero() {
                       <p className="text-sm text-gray-600">Upload Images</p>
                       <p className="text-xs text-gray-400">Drag & drop or click (max 5)</p>
                     </div>
+
+                    {errors.images && (
+                      <p className="text-sm text-red-600">{errors.images}</p>
+                    )}
 
                     {imageItems.length > 0 && (
                       <div className="mt-3">
