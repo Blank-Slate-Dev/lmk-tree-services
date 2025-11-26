@@ -3,132 +3,98 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Award, Shield, Users, Clock, CheckCircle, TreePine, MapPin } from 'lucide-react'
-
-const credentials = [
-  'Qualified and experienced arborists',
-  '$20M public liability insurance',
-  'Safety-focused, fully compliant work practices',
-  'Eco-conscious green waste recycling',
-]
-
-const stats = [
-  {
-    label: '15+ years',
-    sublabel: 'hands-on tree care experience',
-    icon: Clock,
-  },
-  {
-    label: '1000+',
-    sublabel: 'trees safely pruned or removed',
-    icon: TreePine,
-  },
-  {
-    label: '24/7',
-    sublabel: 'rapid response for storm damage',
-    icon: Shield,
-  },
-]
+import { Shield, Award, TreePine, Sparkles } from 'lucide-react'
 
 export function About() {
   return (
-    <section id="about" className="bg-bark-50 py-20">
-      <div className="mx-auto flex max-w-6xl flex-col gap-12 px-4 sm:px-6 lg:flex-row lg:items-start lg:px-8">
-        {/* Copy */}
+    <section id="about" className="relative z-20 -mt-32 pb-20">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, x: -24 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5 }}
-          className="flex-1 space-y-6"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
         >
-          <span className="inline-flex items-center gap-2 rounded-full bg-primary-50 px-4 py-1 text-xs font-semibold tracking-wide text-primary-700">
-            <TreePine className="h-4 w-4" />
-            ABOUT LMK TREE SERVICES
-          </span>
+          {/* Main card - SOLID dark green background, no transparency */}
+          <div className="relative overflow-hidden rounded-3xl bg-[#14532d] p-8 shadow-2xl sm:p-12">
+            {/* Decorative gradient overlay for depth */}
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/50 via-transparent to-green-900/30" />
+            
+            {/* Decorative glow elements */}
+            <div className="absolute top-0 right-0 h-64 w-64 translate-x-1/3 -translate-y-1/3 rounded-full bg-emerald-400/20 blur-3xl" />
+            <div className="absolute bottom-0 left-0 h-48 w-48 -translate-x-1/4 translate-y-1/4 rounded-full bg-green-400/20 blur-3xl" />
 
-          <h2 className="text-left text-3xl font-bold text-bark-900 sm:text-4xl">
-            Local arborists focused on safe, tidy work every time
-          </h2>
-
-          <p className="max-w-xl text-base leading-relaxed text-bark-700">
-            LMK Tree Services specialises in safe removals, careful pruning, hedge trimming and
-            stump grinding for homes and strata properties across Melbourne&apos;s south-east.
-            Every job is planned properly so your roof, fences and gardens stay protected.
-          </p>
-
-          <p className="max-w-xl text-base leading-relaxed text-bark-700">
-            You deal directly with the arborist doing the work – not a call centre. From the first
-            quote to the final clean-up, the same small team is on site, keeping you updated and
-            leaving your property neat and ready to enjoy.
-          </p>
-
-          {/* Location + reassurance */}
-          <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-bark-800">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm">
-              <MapPin className="h-4 w-4 text-primary-600" />
-              <span>Based in Melbourne&apos;s south-east • Servicing metro & nearby areas</span>
-            </div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm">
-              <Shield className="h-4 w-4 text-primary-600" />
-              <span>Fully insured and safety-first on every job</span>
-            </div>
-          </div>
-
-          {/* Credentials list */}
-          <div className="mt-6 rounded-2xl border border-primary-100 bg-white/70 p-5 shadow-sm backdrop-blur">
-            <div className="mb-3 inline-flex items-center gap-2 text-sm font-semibold text-bark-900">
-              <CheckCircle className="h-4 w-4 text-primary-600" />
-              Professional, compliant and insured
-            </div>
-            <ul className="grid gap-2 text-sm text-bark-700 sm:grid-cols-2">
-              {credentials.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary-500" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </motion.div>
-
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, x: 24 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex-1 space-y-6"
-        >
-          <div className="grid gap-4 sm:grid-cols-3">
-            {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="flex flex-col rounded-2xl border border-bark-100 bg-white p-4 text-left shadow-sm"
+            <div className="relative z-10">
+              {/* Header */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-bark-600">
-                  <stat.icon className="h-4 w-4 text-primary-600" />
-                  <span>Trusted locally</span>
-                </div>
-                <p className="text-2xl font-bold text-bark-900">{stat.label}</p>
-                <p className="mt-1 text-sm text-bark-700">{stat.sublabel}</p>
-              </div>
-            ))}
-          </div>
+                <h2 className="mb-3 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+                  About us
+                </h2>
+                <div className="mb-8 h-1.5 w-24 rounded-full bg-gradient-to-r from-emerald-400 to-green-300" />
+              </motion.div>
 
-          <div className="rounded-2xl border border-primary-100 bg-primary-900/95 px-5 py-6 text-sm text-primary-50 shadow-md">
-            <div className="mb-2 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary-200">
-              <Shield className="h-4 w-4" />
-              SAFETY & CLEAN-UP
+              {/* Content */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="max-w-3xl"
+              >
+                <p className="mb-6 text-lg leading-relaxed text-white sm:text-xl">
+                  LMK Tree Services is a trusted name in Tree Lopping and Removal across Melbourne&apos;s
+                  south-east. We also specialise in stump grinding and removal, mulching, and pruning.
+                </p>
+
+                <p className="mb-8 text-emerald-100">
+                  Need a tree removed? Get in touch with our team today.
+                </p>
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                  className="inline-block rounded-full bg-emerald-500 px-6 py-3 text-lg font-bold text-white shadow-lg shadow-emerald-900/30"
+                >
+                  No job is too big or small!
+                </motion.div>
+              </motion.div>
+
+              {/* Stats row */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4"
+              >
+                {[
+                  { icon: TreePine, value: '15+', label: 'Years Experience' },
+                  { icon: Shield, value: '$20M', label: 'Insurance Cover' },
+                  { icon: Award, value: '1000+', label: 'Trees Serviced' },
+                  { icon: Sparkles, value: '24/7', label: 'Emergency Service' },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
+                    className="rounded-2xl bg-white/10 p-4 backdrop-blur-sm border border-white/10"
+                  >
+                    <stat.icon className="mb-2 h-6 w-6 text-emerald-400" />
+                    <p className="text-2xl font-bold text-white">{stat.value}</p>
+                    <p className="text-xs text-emerald-200">{stat.label}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
-            <p className="mb-2 text-primary-50">
-              Every job starts with a safety check and clear plan of attack. Access, neighbouring
-              properties, pets and powerlines are all considered before a saw starts.
-            </p>
-            <p className="text-primary-100/90">
-              Once the work is done, branches, logs and green waste are chipped or removed, and
-              work areas are blown down so your yard looks tidy again – not like a worksite.
-            </p>
           </div>
         </motion.div>
       </div>

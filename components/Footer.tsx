@@ -1,131 +1,143 @@
 // components/Footer.tsx
-import { Mail, MapPin, Phone } from 'lucide-react'
+'use client'
+
+import React from 'react'
+import { motion } from 'framer-motion'
+import { Phone, Mail, MapPin, ArrowUp } from 'lucide-react'
 import Image from 'next/image'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
-    <footer className="bg-gradient-to-b from-bark-100 via-bark-50 to-white">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-4">
-          {/* Brand / intro */}
-          <div className="space-y-5 lg:col-span-2">
-            <div className="flex flex-col leading-tight">
-              <span className="text-base font-semibold tracking-tight text-bark-900">
-                LMK Tree Services
-              </span>
-              <span className="text-xs text-bark-600">Professional Arborists</span>
+    <footer className="relative overflow-hidden bg-gradient-to-b from-primary-800 to-primary-900">
+      {/* Background decoration */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/4 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 h-64 w-64 rounded-full bg-green-500/10 blur-3xl" />
+      </div>
+
+      {/* Scroll to top button */}
+      <motion.button
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        onClick={scrollToTop}
+        className="absolute -top-6 right-8 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg transition-all hover:shadow-xl hover:-translate-y-1"
+      >
+        <ArrowUp className="h-5 w-5 text-primary-700" />
+      </motion.button>
+
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        {/* Logo centered */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-10 flex justify-center"
+        >
+          <div className="text-center">
+            <Image
+              src="/logo.png"
+              alt="LMK Tree Services"
+              width={180}
+              height={90}
+              className="mx-auto object-contain brightness-0 invert"
+            />
+          </div>
+        </motion.div>
+
+        {/* Contact info row */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-10 flex flex-wrap items-center justify-center gap-6 sm:gap-10"
+        >
+          <a
+            href="tel:0429187791"
+            className="group flex items-center gap-3 rounded-full bg-white/10 px-5 py-3 text-white backdrop-blur-sm transition-all hover:bg-white/20"
+          >
+            <div className="rounded-full bg-emerald-500/20 p-2">
+              <Phone className="h-4 w-4 text-emerald-400" />
             </div>
+            <span className="font-medium">0429 187 791</span>
+          </a>
 
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-bark-700">
-              LMK Tree Services specialises in safe, professional tree removals, pruning,
-              hedge trimming and stump grinding. Local, fully insured and committed to leaving
-              every property clean, tidy and ready to enjoy.
-            </p>
+          <a
+            href="mailto:kyle@lmktreeservices.com"
+            className="group flex items-center gap-3 rounded-full bg-white/10 px-5 py-3 text-white backdrop-blur-sm transition-all hover:bg-white/20"
+          >
+            <div className="rounded-full bg-emerald-500/20 p-2">
+              <Mail className="h-4 w-4 text-emerald-400" />
+            </div>
+            <span className="font-medium">kyle@lmktreeservices.com</span>
+          </a>
 
-            <p className="text-sm text-bark-600">
-              Free, no-obligation quotes with honest advice on the best option for your trees and
-              property.
-            </p>
+          <div className="flex items-center gap-3 rounded-full bg-white/10 px-5 py-3 text-white backdrop-blur-sm">
+            <div className="rounded-full bg-emerald-500/20 p-2">
+              <MapPin className="h-4 w-4 text-emerald-400" />
+            </div>
+            <span className="font-medium">Melbourne&apos;s South-East</span>
           </div>
+        </motion.div>
 
-          {/* Quick links */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-primary-700">
-              QUICK LINKS
-            </h3>
-            <nav className="flex flex-col gap-2 text-sm">
-              <a href="#services" className="text-bark-700 hover:text-primary-700">
-                Services
-              </a>
-              <a href="#process" className="text-bark-700 hover:text-primary-700">
-                How we work
-              </a>
-              <a href="#about" className="text-bark-700 hover:text-primary-700">
-                About LMK
-              </a>
-              <a href="#consultation" className="text-bark-700 hover:text-primary-700">
-                Request a free quote
-              </a>
-            </nav>
-          </div>
+        {/* Quick links */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mb-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm"
+        >
+          {['Services', 'About', 'Gallery', 'Testimonials', 'Contact'].map((link) => (
+            <a
+              key={link}
+              href={`#${link.toLowerCase()}`}
+              className="text-primary-200 transition-colors hover:text-white"
+            >
+              {link}
+            </a>
+          ))}
+        </motion.div>
 
-          {/* Contact */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-primary-700">
-              CONTACT &amp; SERVICE AREA
-            </h3>
-            <ul className="space-y-3 text-sm text-bark-800">
-              <li className="flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-100 text-primary-700">
-                  <Phone className="h-4 w-4" />
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-bark-600">CALL KYLE</p>
-                  <a href="tel:0429187791" className="text-base font-semibold text-bark-900">
-                    0429 187 791
-                  </a>
-                </div>
-              </li>
+        {/* Divider */}
+        <div className="mb-8 h-px bg-gradient-to-r from-transparent via-primary-600 to-transparent" />
 
-              <li className="flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-100 text-primary-700">
-                  <Mail className="h-4 w-4" />
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-bark-600">EMAIL</p>
-                  <a
-                    href="mailto:kyle@lmktreeservices.com"
-                    className="text-sm font-medium text-bark-900"
-                  >
-                    kyle@lmktreeservices.com
-                  </a>
-                </div>
-              </li>
-
-              <li className="flex items-start gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-100 text-primary-700">
-                  <MapPin className="h-4 w-4" />
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.18em] text-bark-600">BASED IN</p>
-                  <p className="text-sm font-medium text-bark-900">
-                    Melbourne&apos;s south-east • Servicing metro &amp; surrounding suburbs
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="mt-12 border-top border-bark-200 pt-6 text-xs text-bark-600 sm:flex sm:items-center sm:justify-between">
-          <p>&copy; {currentYear} LMK Tree Services. All rights reserved.</p>
-
-          <p className="mt-3 text-center sm:mt-0 sm:text-left">
-            Fully insured tree lopping &amp; arborist services • Free quotes available
-          </p>
-
-          {/* Website credit at the very bottom */}
-          <div className="mt-3 flex items-center justify-center gap-2 sm:mt-0">
-            <span className="text-[11px] text-bark-500">Website by</span>
+        {/* Bottom section */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="flex flex-col items-center gap-4 text-center text-sm text-primary-300"
+        >
+          <p>&copy; {currentYear} LMK Tree Services. All Rights Reserved.</p>
+          
+          <div className="flex items-center gap-2">
+            <span className="text-primary-400">Designed by</span>
             <a
               href="http://blankslatedev.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2"
+              className="transition-opacity hover:opacity-80"
             >
               <Image
                 src="/BlankSlateDevToFillHeader.png"
                 alt="Blank Slate Dev"
-                width={60}
-                height={60}
-                className="object-contain"
+                width={70}
+                height={70}
+                className="object-contain brightness-0 invert opacity-70"
               />
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   )
