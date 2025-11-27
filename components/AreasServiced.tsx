@@ -33,16 +33,17 @@ const areas = [
   'Pakenham',
   'Trafalgar',
   'Traralgon',
+  'Tynong',
   'Warragul',
   'Yarragon',
 ]
 
 export function AreasServiced() {
-  // Mobile: 2 columns (15 + 14)
+  // Mobile: 2 columns (15 + 15)
   const mobileCol1 = areas.slice(0, 15)
   const mobileCol2 = areas.slice(15)
 
-  // Desktop: 3 columns (10 + 10 + 9)
+  // Desktop: 3 columns (10 + 10 + 10)
   const desktopCol1 = areas.slice(0, 10)
   const desktopCol2 = areas.slice(10, 20)
   const desktopCol3 = areas.slice(20)
